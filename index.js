@@ -3,12 +3,14 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const {circle, square, triangle} = require("./lib/shapes");
 
+// Takes in the user's input and creates a svg logo
 function svgLogo ({text, textColor, shape, shapeColor}, renderInput) {
     return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${renderInput}
     <text x="150" y="125" font-size="50" text-anchor="middle" fill="${textColor}">${text}</text>`;
 };
 
+// An array of four objects that returns promises to log the user's input to the console
 inquirer
     .prompt([
         {
@@ -33,6 +35,7 @@ inquirer
             message: 'Enter a shape color (OR a hexdecimal number):'
         },
     ])
+// Depending on which shape the user chooses, the data represents the all answers provided   
     .then((data) => {
         var renderInput = '';
         if(data.shape == 'circle') {
@@ -50,6 +53,7 @@ inquirer
             shapeSquare.setColor(data.shapeColor);
             renderInput = shapeSquare.render();
         }
+// Writes the name of the file with data and uses a callback function to see If successful or failed. 
         const input = svgLogo(data, renderInput);
         fs.writeFile('logo.svg', input, (err) => err ? console.log(err) : console.log('Successfully created logo.svg!'));
     })
