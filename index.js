@@ -7,7 +7,8 @@ const {circle, square, triangle} = require("./lib/shapes");
 function svgLogo ({text, textColor, shape, shapeColor}, renderInput) {
     return `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${renderInput}
-    <text x="150" y="125" font-size="50" text-anchor="middle" fill="${textColor}">${text}</text>`;
+    <text x="150" y="125" font-size="50" text-anchor="middle" fill="${textColor}">${text}</text>
+    </svg>`;
 };
 
 // An array of four objects that returns promises to log the user's input to the console
